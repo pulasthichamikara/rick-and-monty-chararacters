@@ -1,0 +1,36 @@
+.character-item-wrapper {
+  width: 20%;
+  display: flex;
+}
+
+.character {
+  border-radius: 4px;
+  margin: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.character img {
+  width: 100%;
+}
+
+.bottom-section {
+  padding: 10px;
+}
+
+.bottom-section h3 {
+  padding: 0px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.charactor__item {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  font-size: 16px !important;
+}
+.charactor__item span {
+  color: #5d5b5b;
+  margin-right: 20px;
+  min-width: 50px;
+}

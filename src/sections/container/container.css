@@ -1,0 +1,11 @@
+.container-wrapper {
+  padding: 20px;
+  background: #ccc;
+}
+
+.characters-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+}
