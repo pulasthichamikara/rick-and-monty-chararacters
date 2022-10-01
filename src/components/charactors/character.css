@@ -1,6 +1,7 @@
 .character-item-wrapper {
   width: 20%;
   display: flex;
+  position: relative;
 }
 
 .character {
@@ -33,4 +34,18 @@
   color: #5d5b5b;
   margin-right: 20px;
   min-width: 50px;
+}
+
+.favourite-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

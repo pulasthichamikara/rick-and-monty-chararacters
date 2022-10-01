@@ -1,12 +1,24 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import Heart from '../../icons/Heart';
 import Episode from '../episodes/Episode';
 import './character.css';
 
-export default function Character({ data, expanedItem, expanedItemhandler }) {
-  const episoceData = data.episode.slice(0, 3).reverse();
+export default function Character({
+  data,
+  expanedItem,
+  expanedItemhandler,
+  favouriteHandler,
+  isFavorite,
+}) {
+  const episodeData = data.episode.slice(0, 3).reverse();
 
   return (
     <div className="character">
+      {/* favourite */}
+      <span className="favourite-icon" onClick={() => favouriteHandler(data)}>
+        <Heart />
+      </span>
+
       <img src={data.image} alt={data.name} />
       <div className="bottom-section">
         <h3 className="title">{data.name}</h3>
@@ -30,7 +42,7 @@ export default function Character({ data, expanedItem, expanedItemhandler }) {
           {expanedItem === data.id && (
             <>
               {data.episode &&
-                episoceData.map((epi) => <Episode url={epi} key={epi} />)}
+                episodeData.map((epi) => <Episode url={epi} key={epi} />)}
             </>
           )}
         </div>
@@ -39,6 +51,7 @@ export default function Character({ data, expanedItem, expanedItemhandler }) {
 
         {expanedItem === data.id ? (
           <button
+            className="btn full-width mt-1 bg-sec"
             onClick={() => {
               expanedItemhandler(null);
             }}
@@ -47,6 +60,7 @@ export default function Character({ data, expanedItem, expanedItemhandler }) {
           </button>
         ) : (
           <button
+            className="btn full-width mt-1 bg-pr"
             onClick={() => {
               expanedItemhandler(data.id);
             }}
