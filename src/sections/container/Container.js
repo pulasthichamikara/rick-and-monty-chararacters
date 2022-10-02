@@ -69,6 +69,7 @@ export default function Container() {
                 />
               </div>
             ))}
+          {pageItemData.length < 1 && <h3>No data available</h3>}
         </Fragment>
       </div>
     );
