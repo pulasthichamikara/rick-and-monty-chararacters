@@ -1,7 +1,6 @@
 .character-item-wrapper {
   width: 20%;
   display: flex;
-  position: relative;
 }
 
 .character {
@@ -9,6 +8,8 @@
   margin: 10px;
   background: #fff;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 .character img {
   width: 100%;
@@ -48,4 +49,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.favourite-icon.hit svg {
+  color: #dba100;
+}
+.favourite-icon.hit {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .character-item-wrapper {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 998px) {
+  .character-item-wrapper {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .character-item-wrapper {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 520px) {
+  .character-item-wrapper {
+    width: 100%;
+  }
 }

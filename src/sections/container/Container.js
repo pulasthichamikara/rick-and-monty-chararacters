@@ -14,6 +14,8 @@ export default function Container() {
 
   const { data, loading, error } = useFetch(baseUrl);
   const [favourite, setFavourite] = useState([]);
+  console.log(data);
+  console.log(favourite);
   /* expanded infomation item */
   const [expanedItem, setExpanedItem] = useState(null);
   const [showFavorites, setShowFavorites] = useState(false);
@@ -37,34 +39,33 @@ export default function Container() {
     localStorage.setItem('rm-favorites', JSON.stringify(tempfavourites));
   };
 
+  /* remove favorites */
+  const favouriteRemoveHandler = (id) => {
+    const tempRmfavourites = favourite.filter((item) => {
+      return item.id !== id;
+    });
+    setFavourite(tempRmfavourites);
+    localStorage.setItem('rm-favorites', JSON.stringify(tempRmfavourites));
+  };
+
   const handleShowAll = (show) => {
     setShowFavorites(show);
   };
 
-  /* check alreday added into favorite list */
-  const chekIsFavorite = (id) => {
-    favourite.some((favouriteItem) => {
-      if (favouriteItem.id === id) {
-        return true;
-      }
-      return false;
-    });
-  };
-
-  const pageItems = (pageItemData) => {
+  const pageItems = (pageItemData, type = '') => {
     return (
       <div className="characters-wrapper">
         <Fragment>
           {pageItemData &&
             pageItemData.map((character) => (
-              <div key={character.id} className="character-item-wrapper">
-                {chekIsFavorite(character.id)}
+              <div key={character.id + type} className="character-item-wrapper">
                 <Character
                   data={character}
                   expanedItem={expanedItem}
                   expanedItemhandler={expanedItemhandler}
                   favouriteHandler={favouriteHandler}
-                  isFavorite={chekIsFavorite(character.id)}
+                  favouriteRemoveHandler={favouriteRemoveHandler}
+                  type={type}
                 />
               </div>
             ))}
@@ -79,17 +80,27 @@ export default function Container() {
       <PageHeader handleShowAll={handleShowAll} showFavorites={showFavorites} />
 
       {/* Faverite Items */}
-      {showFavorites && pageItems(favourite)}
+      {showFavorites && pageItems(favourite, 'fav')}
 
       {/* Default character data */}
       <div className="characters-wrapper">
         {!showFavorites && (
           <>
-            {loading ? <Loading /> : <>{data && pageItems(data.results)}</>}
-            {/* pagination  */}
-            <div className="full-width">
-              <Pagination data={data} setBaseUrl={setBaseUrl} />
-            </div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                <div className="full-width">
+                  <Pagination data={data} setBaseUrl={setBaseUrl} />
+                </div>
+
+                {data && pageItems(data.results)}
+
+                <div className="full-width">
+                  <Pagination data={data} setBaseUrl={setBaseUrl} />
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

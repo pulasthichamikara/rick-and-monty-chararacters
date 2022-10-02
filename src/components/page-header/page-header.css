@@ -10,3 +10,10 @@
 .page-header .btn {
   margin-left: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    margin: 5px 0;
+  }
+}

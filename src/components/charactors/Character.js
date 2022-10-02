@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import Close from '../../icons/Close';
 import Heart from '../../icons/Heart';
 import Episode from '../episodes/Episode';
 import './character.css';
@@ -8,16 +9,34 @@ export default function Character({
   expanedItem,
   expanedItemhandler,
   favouriteHandler,
-  isFavorite,
+  favouriteRemoveHandler,
+  type,
 }) {
-  const episodeData = data.episode.slice(0, 3).reverse();
-
+  const episodeData = data.episode.slice().reverse().slice(0, 3);
+  const [favHeighlight, setFavHeighlight] = useState(false);
   return (
     <div className="character">
       {/* favourite */}
-      <span className="favourite-icon" onClick={() => favouriteHandler(data)}>
-        <Heart />
-      </span>
+      {type !== 'fav' ? (
+        <span
+          className={favHeighlight ? 'favourite-icon hit' : 'favourite-icon'}
+          onClick={() => {
+            favouriteHandler(data);
+            setFavHeighlight(true);
+          }}
+        >
+          {<Heart />}
+        </span>
+      ) : (
+        <>
+          <span
+            className="favourite-icon"
+            onClick={() => favouriteRemoveHandler(data.id)}
+          >
+            <Close />
+          </span>
+        </>
+      )}
 
       <img src={data.image} alt={data.name} />
       <div className="bottom-section">

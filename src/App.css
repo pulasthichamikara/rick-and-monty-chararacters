@@ -26,7 +26,9 @@
   user-select: none;
   border: 1px solid transparent;
   padding: 3px 10px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
   line-height: 1.5;
   border-radius: 2px;
   cursor: pointer;
@@ -51,15 +53,3 @@
 .mt-1 {
   margin-top: 10px !important;
 }
-
-/*
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
- */

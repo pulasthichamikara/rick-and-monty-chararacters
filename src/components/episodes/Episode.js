@@ -1,10 +1,9 @@
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
 import Loading from '../loading/Loading';
-
+import './episode.css';
 export default function Episode({ url }) {
   const { data, loading, error } = useFetch(url);
-
   return (
     <div>
       {data && error === false && (
@@ -12,11 +11,14 @@ export default function Episode({ url }) {
           {loading ? (
             <Loading />
           ) : (
-            <span className="list-style">{data.episode}</span>
+            <div className="episode-wrapper">
+              <span>{data.episode}</span>
+              <p>{data.name}</p>
+              <span>{data.air_date}</span>
+            </div>
           )}
         </>
       )}
-      <div className="episode-wrapper"></div>
     </div>
   );
 }
